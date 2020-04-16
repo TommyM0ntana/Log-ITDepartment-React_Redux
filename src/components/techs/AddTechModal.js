@@ -5,8 +5,9 @@ const AddTechModal = () => {
   //add component level state 
   //log message , attentian value and the tecnitian
 
-  const [lastName, setLastName] = useState('')
   const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+
 
 
   const onSubmit = () => {
@@ -14,44 +15,29 @@ const AddTechModal = () => {
       M.toast({ html: 'Please enter the first and last name' })
     } else {
       console.log(firstName, lastName);
-      setName('')
+      setFirstName('')
       setLastName('')
     }
   }
   return (
-    <div id='tech-log-modal' className='modal' style={modalStyle}>
+    <div id='add-tech-modal' className='modal'>
       <div className="modal-content">
-        <h4>Enter System Log</h4>
+        <h4>New technician</h4>
         <div className="row">
           <div className="input-field">
-            <input className='input-field' type="text" name='message' value={message} onChange={e => setMessage(e.target.value)} />
-            <label htmlFor="message" className='active'>Log Message</label>
+            <input className='input-field' type="text" name='firstName' value={firstName} onChange={e => setFirstName(e.target.value)} />
+            <label htmlFor="firstName" className='active'>First Name</label>
           </div>
         </div>
+
         <div className="row">
           <div className="input-field">
-            <select name="tech" value={tech} className='browser-default' onChange={e => setTech(e.target.value)} >
-              <option value="" disabled>
-                Select Technician
-             </option>
-              <option value="John Doe">John Doe</option>
-              <option value="Tommy Harwood">Tommy Harwood</option>
-              <option value="Jimmy Quarantino">Jimmy Quarantino</option>
-            </select>
+            <input className='input-field' type="text" name='lastName' value={lastName} onChange={e => setLastName(e.target.value)} />
+            <label htmlFor="lastName" className='active'>Last Name</label>
           </div>
         </div>
-        <div className="row">
-          <div className="input-field">
-            <p>
-              <label>
-                <input type="checkbox" className='filled-in' checked={attention} value={attention}
-                  onChange={e => setAttention(!attention)}
-                />
-                <span>Needs Attention</span>
-              </label>
-            </p>
-          </div>
-        </div>
+
+
       </div>
       <div className="modal-footer">
         <a href="#!" onClick={onSubmit} className="modal-close waves-effect blue btn">Enter</a>
@@ -60,9 +46,9 @@ const AddTechModal = () => {
   )
 }
 
-const modalStyle = {
-  width: '75%',
-  height: '75%'
-}
+// const modalStyle = {
+//   width: '75%',
+//   height: '75%'
+// }
 
 export default AddTechModal

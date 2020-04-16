@@ -17,7 +17,6 @@ const AddLogModal = () => {
       setTech('')
       setAttention(false)
     }
-
   }
   return (
     <div id='add-log-modal' className='modal' style={modalStyle}>
