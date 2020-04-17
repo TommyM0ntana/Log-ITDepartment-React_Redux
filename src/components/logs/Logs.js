@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
-import LogItem from "./LogItem";
+
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import LogItem from './LogItem';
 import Preloader from '../layouts/Preloader'
+import PropTypes from 'prop-types';
+import { getLogs } from '../../actions/logActions';
 
-const Logs = () => {
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+const Logs = ({ log: { logs, loading }, getLogs }) => {
   useEffect(() => {
-    setLoading(true);
-    fetch("/logs")
-      .then(res => res.json())
-      .then(setLogs)
-      .then(() => setLoading(false));
-  }, [setLoading, setLogs]);
+    getLogs();
+    // eslint-disable-next-line
+  }, []);
 
-  if (loading) {
+  if (loading || logs === null) {
     return <Preloader />;
   }
 
   return (
-    <ul className='collection with-header' style={{ marginTop: "50px" }}>
+    <ul className='collection with-header'>
       <li className='collection-header'>
         <h4 className='center'>System Logs</h4>
       </li>
@@ -32,4 +30,16 @@ const Logs = () => {
   );
 };
 
-export default Logs;
+Logs.propTypes = {
+  log: PropTypes.object.isRequired,
+  getLogs: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  log: state.log
+});
+
+export default connect(
+  mapStateToProps,
+  { getLogs }
+)(Logs);
