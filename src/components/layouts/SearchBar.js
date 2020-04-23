@@ -14,6 +14,7 @@ const SearchBar = () => {
           </div>
         </form>
       </div>
+      2
     </nav>
   );
 };

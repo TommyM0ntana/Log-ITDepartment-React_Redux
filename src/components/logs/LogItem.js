@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
-import M from "materialize-css/dist/js/materialize.min.js";
 
-const LogItem = log => {
+const LogItem = ({ log }) => {
   return (
     <li className='collection-item'>
       <div>
@@ -17,8 +16,18 @@ const LogItem = log => {
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>{log.tech}</span>
+          <span className='black-text'>ID #{log.id} </span>
+          <span>last updated by </span>
+          <span className='black-text'>{log.tech}</span> on{" "}
+          <Moment parse='YYYY-MM-DDTHH:mm:ss' format='MMMM Do, YYYY, h:mm a'>
+            {" "}
+            {log.date}
+          </Moment>
         </span>
+
+        <a href='/' className='secondary-content'>
+          <i className='material-icons grey-text'>delete</i>
+        </a>
       </div>
     </li>
   );
